@@ -13,14 +13,32 @@
    <maven.compiler.target>11</maven.compiler.target>
  </properties>
  
- <dependencies>
- <dependency>
-  <groupId>org.apache.commons</groupId>
-  <artifactId>commons-lang3</artifactId>
-  <version>3.12.0</version>
-</dependency>
-</dependencies>
-  
-</project>
-
+	<dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+    </dependencies>
 	
+	
+	<!-- The build group that follow is necessary when you need to load an external jar into classpath so that the program can run without problem -->
+	<!-- The problem occurs when you run jar file from command line, if the same is performed by IDE the issue not occurs as IDE provide classpath for jar files -->
+	<!-- The problem is that maven works fine when compile but goes in error when run because the jar file is available a compile time but not at execution time -->
+	<!-- Remember that it is also mandatory copy the jar file into target folder in order to run everything successfully -->
+	<build>
+	<plugins>
+	<plugin>
+		<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<manifest>
+						<addClasspath>true</addClasspath>
+					</manifest>
+				</archive>
+			</configuration>
+	</plugin>
+	</plugins>
+	</build>
+	
+</project>

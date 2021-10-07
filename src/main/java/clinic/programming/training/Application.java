@@ -15,8 +15,10 @@ public class Application {
     	System.out.println ("Starting Application");
 		Application app = new Application();
 		app.greet();
+		System.out.println(System.getProperty("java.class.path"));
 		int count = app.countWords("I have only these words");
 		System.out.println("Word count: " + count);
+		
     }
 	
 	public void greet() {
